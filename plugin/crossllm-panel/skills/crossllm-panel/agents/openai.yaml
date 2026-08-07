@@ -1,0 +1,13 @@
+interface:
+  display_name: "CrossLLM Panel"
+  short_description: "Compare seven LLM providers in parallel"
+  default_prompt: "Use $crossllm-panel to ask seven providers and synthesize their best supported answer."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "crossllm_mcp"
+      description: "Authenticated seven-provider CrossLLM panel"
+      transport: "streamable_http"
+      url: "https://crossllm-mcp.example.com/mcp"
+policy:
+  allow_implicit_invocation: true

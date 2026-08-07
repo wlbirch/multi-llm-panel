@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "crossllm_mcp": {
+      "type": "http",
+      "url": "https://crossllm-mcp.example.com/mcp"
+    }
+  }
+}

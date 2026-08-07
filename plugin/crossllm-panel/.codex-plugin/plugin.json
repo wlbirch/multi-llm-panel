@@ -1,0 +1,23 @@
+{
+  "name": "crossllm-panel",
+  "version": "0.1.0",
+  "description": "Compare answers from seven independent LLM providers and synthesize a supported conclusion.",
+  "author": {
+    "name": "CrossLLM"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "CrossLLM Panel",
+    "shortDescription": "Compare seven LLM providers in parallel",
+    "longDescription": "Runs one task through OpenAI, Anthropic, Gemini, Hugging Face, Kimi, Mistral, and Grok, then guides ChatGPT to reconcile their results.",
+    "developerName": "CrossLLM",
+    "category": "Productivity",
+    "capabilities": ["Read", "Analyze"],
+    "defaultPrompt": [
+      "Ask the seven-model panel and synthesize the result.",
+      "Compare independent LLM opinions on this decision.",
+      "Run an adversarial seven-model review."
+    ]
+  },
+  "mcpServers": "./.mcp.json"
+}
