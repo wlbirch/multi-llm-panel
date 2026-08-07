@@ -29,7 +29,7 @@ CrossLLM Panel exposes one authenticated MCP tool that submits the same task to 
 ## Secure production setup
 
 1. Deploy the bootstrap Blueprint as a free Docker web service. It starts in `AUTH_MODE=dev` with no provider credentials so you can obtain the permanent Render URL without exposing paid APIs.
-2. Create an Auth0 API whose identifier exactly matches the deployed MCP resource URL (`https://YOUR-SERVICE.onrender.com/mcp`).
+2. Create an Auth0 API whose identifier exactly matches the deployed MCP resource URL (`https://crossllm-mcp.onrender.com/mcp`).
 3. Enable Auth0 Client ID Metadata Document registration and configure user-delegated access.
 4. In Render's secret environment settings, add all provider credentials plus `AUTH0_ISSUER`, `JWT_AUDIENCES`, and `RESOURCE_SERVER_URL`.
 5. Change `AUTH_MODE` from `dev` to `oauth` and redeploy. Do not add provider keys until this OAuth change is ready to deploy.

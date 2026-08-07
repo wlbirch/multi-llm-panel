@@ -8,6 +8,6 @@ dependencies:
       value: "crossllm_mcp"
       description: "Authenticated seven-provider CrossLLM panel"
       transport: "streamable_http"
-      url: "https://crossllm-mcp.example.com/mcp"
+      url: "https://crossllm-mcp.onrender.com/mcp"
 policy:
   allow_implicit_invocation: true

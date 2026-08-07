@@ -40,13 +40,14 @@ def build_mcp() -> FastMCP:
         ),
     }
     if AUTH_MODE == "oauth":
-        issuer = os.getenv("AUTH0_ISSUER", "").rstrip("/")
-        if not issuer:
+        issuer_base = os.getenv("AUTH0_ISSUER", "").rstrip("/")
+        if not issuer_base:
             raise RuntimeError("AUTH0_ISSUER is required when AUTH_MODE=oauth")
+        issuer = f"{issuer_base}/"
         kwargs.update(
-            token_verifier=JWTVerifier(f"{issuer}/.well-known/jwks.json", issuer=issuer),
+            token_verifier=JWTVerifier(f"{issuer_base}/.well-known/jwks.json", issuer=issuer),
             auth=AuthSettings(
-                issuer_url=AnyHttpUrl(issuer),
+                issuer_url=AnyHttpUrl(issuer_base),
                 resource_server_url=AnyHttpUrl(RESOURCE_SERVER_URL),
                 required_scopes=REQUIRED_SCOPES,
             ),
