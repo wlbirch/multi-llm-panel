@@ -6,4 +6,10 @@ services:
     healthCheckPath: /health
     envVars:
       - key: AUTH_MODE
-        value: dev
+        value: oauth
+      - key: RESOURCE_SERVER_URL
+        value: https://crossllm-mcp.onrender.com/mcp
+      - key: AUTH0_ISSUER
+        value: https://dev-5phm4adx1gab23y0.us.auth0.com
+      - key: JWT_AUDIENCES
+        value: https://crossllm-mcp.onrender.com/mcp
