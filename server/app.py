@@ -26,7 +26,7 @@ AUTH_MODE = os.getenv("AUTH_MODE", "dev").lower()
 RESOURCE_SERVER_URL = os.getenv("RESOURCE_SERVER_URL", f"http://localhost:{PORT}").rstrip("/")
 REQUIRED_SCOPES = [
     scope.strip()
-    for scope in os.getenv("REQUIRED_SCOPES", "openid,profile,email").split(",")
+    for scope in os.getenv("REQUIRED_SCOPES", "run:panel").split(",")
     if scope.strip()
 ]
 
