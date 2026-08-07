@@ -21,6 +21,10 @@ class JWTVerifier(TokenVerifier):
         self._audiences = tuple(value.strip() for value in audiences.split(",") if value.strip())
         if not self._audiences:
             raise ValueError("JWT_AUDIENCES must contain at least one audience")
+        client_ids = os.getenv("JWT_CLIENT_IDS", "")
+        self._client_ids = tuple(value.strip() for value in client_ids.split(",") if value.strip())
+        if not self._client_ids:
+            raise ValueError("JWT_CLIENT_IDS must contain at least one allowed OAuth client")
         self._issuer = issuer
         self._jwk_client = PyJWKClient(jwks_uri)
 
@@ -43,15 +47,18 @@ class JWTVerifier(TokenVerifier):
 
         scope_value = claims.get("scope") or claims.get("scp") or ""
         scopes = scope_value.split() if isinstance(scope_value, str) else list(scope_value)
+        client_id = str(claims.get("azp") or claims.get("client_id") or "")
+        if client_id not in self._client_ids:
+            logger.warning("Rejected OAuth access token from unauthorized client: %s", client_id or "missing")
+            return None
         audience = claims.get("aud")
         resource = audience[0] if isinstance(audience, list) and audience else audience
         return AccessToken(
             token=token,
-            client_id=str(claims.get("azp") or claims.get("client_id") or "unknown_client"),
+            client_id=client_id,
             subject=str(claims.get("sub") or "unknown_subject"),
             scopes=[str(scope) for scope in scopes],
             expires_at=claims.get("exp"),
             resource=resource,
             claims=claims,
         )
-

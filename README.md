@@ -30,7 +30,7 @@ CrossLLM Panel exposes one authenticated MCP tool that submits the same task to 
 
 1. Deploy the bootstrap Blueprint as a free Docker web service. It starts in `AUTH_MODE=dev` with no provider credentials so you can obtain the permanent Render URL without exposing paid APIs.
 2. Create an Auth0 API whose identifier exactly matches the deployed MCP resource URL (`https://crossllm-mcp.onrender.com/mcp`).
-3. Add the `run:panel` API permission. Set User-Delegated Application Access to per-app authorization and grant only that permission to ChatGPT's dynamically registered client.
+3. Set User-Delegated Application Access to per-app authorization and grant ChatGPT's dynamically registered client access to the API. Set `JWT_CLIENT_IDS` to that client's `tpc_...` ID so tokens from other OAuth clients are rejected.
 4. Enable Auth0 Dynamic Client Registration temporarily so ChatGPT can register its connector client, then disable open registration after the connection is established.
 5. Deploy the production OAuth settings in `render.yaml` without provider credentials and verify protected-resource discovery.
 6. Connect the deployed `/mcp` endpoint in ChatGPT Work Developer Mode using OAuth.

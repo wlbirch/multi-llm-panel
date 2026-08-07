@@ -13,5 +13,7 @@ services:
         value: https://dev-5phm4adx1gab23y0.us.auth0.com
       - key: JWT_AUDIENCES
         value: https://crossllm-mcp.onrender.com/mcp
+      - key: JWT_CLIENT_IDS
+        value: tpc_iKn5ici4rntzLKwybBVh6b
       - key: REQUIRED_SCOPES
-        value: run:panel
+        value: openid
