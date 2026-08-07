@@ -51,6 +51,7 @@ class JWTVerifier(TokenVerifier):
         if client_id not in self._client_ids:
             logger.warning("Rejected OAuth access token from unauthorized client: %s", client_id or "missing")
             return None
+        logger.info("Accepted OAuth access token client_id=%s scopes=%s", client_id, sorted(str(scope) for scope in scopes))
         audience = claims.get("aud")
         resource = audience[0] if isinstance(audience, list) and audience else audience
         return AccessToken(
