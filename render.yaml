@@ -16,4 +16,4 @@ services:
       - key: JWT_CLIENT_IDS
         value: tpc_iKn5ici4rntzLKwybBVh6b
       - key: REQUIRED_SCOPES
-        value: openid
+        value: run:panel
